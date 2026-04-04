@@ -11,4 +11,18 @@
 	"observability": {
 		"enabled": true,
 	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_id": "8a8e7a0f-4761-48e1-8df1-20c20161d993",
+			"remote": true,
+		},
+	],
+	"kv_namespaces": [
+		{
+			"binding": "CACHE",
+			"id": "c29bbd04f84e4ff3aa67c2caf8c73d4a",
+			"remote": true,
+		},
+	],
 }
