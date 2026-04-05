@@ -12,7 +12,7 @@ export async function createContext({
     env,
     workerCtx,
     userInfo: {
-      userId: "1234567890",
+      userId: "123456",
     },
   };
 }
