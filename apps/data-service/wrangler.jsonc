@@ -11,6 +11,10 @@
 	"observability": {
 		"enabled": true,
 	},
+	"browser": {
+		"binding": "VIRTUAL_BROWSER",
+	},
+
 	"d1_databases": [
 		{
 			"binding": "DB",
@@ -38,4 +42,20 @@
 			},
 		],
 	},
+	"workflows": [
+		{
+			"binding": "DESTINATION_EVALUATION_WORKFLOW",
+			"name": "destination-evaluation-workflow",
+			"class_name": "DestinationEvaluationWorkflow", //exported from index.ts
+		},
+	],
+	"ai": {
+		"binding": "AI",
+	},
+	"r2_buckets": [
+		{
+			"binding": "BUCKET",
+			"bucket_name": "smart-links-bucket-stage",
+		},
+	],
 }
