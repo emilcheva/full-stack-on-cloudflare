@@ -49,4 +49,7 @@
 			"class_name": "DestinationEvaluationWorkflow", //exported from index.ts
 		},
 	],
+	"ai": {
+		"binding": "AI",
+	},
 }
