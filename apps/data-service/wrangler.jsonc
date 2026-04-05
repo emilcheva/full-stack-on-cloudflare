@@ -52,4 +52,10 @@
 	"ai": {
 		"binding": "AI",
 	},
+	"r2_buckets": [
+		{
+			"binding": "BUCKET",
+			"bucket_name": "smart-links-bucket-stage",
+		},
+	],
 }
