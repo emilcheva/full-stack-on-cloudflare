@@ -58,4 +58,18 @@
 			"bucket_name": "smart-links-bucket-stage",
 		},
 	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"name": "EVALUATION_SCHEDULAR",
+				"class_name": "EvaluationScheduler",
+			},
+		],
+	},
+	"migrations": [
+		{
+			"tag": "v1",
+			"new_sqlite_classes": ["EvaluationScheduler"],
+		},
+	],
 }
