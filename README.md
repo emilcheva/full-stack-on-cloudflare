@@ -43,6 +43,40 @@ packages/data-ops/       # Shared DB schema, queries, Zod schemas
 4. A **`LinkClickTracker` Durable Object** maintains live WebSocket connections per account and pushes a sliding window of clicks every 2 seconds.
 5. Destination health checks run as **Cloudflare Workflows**: Puppeteer scrapes the page → Workers AI analyses content → results saved to R2 and D1. The `EvaluationScheduler` Durable Object drives these via alarms.
 
+## Link Click Flow
+
+When a user opens a short link, the following happens:
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant Hono
+    participant KV
+    participant D1
+    participant Queue
+    participant LCT as LinkClickTracker DO
+    participant ES as EvaluationScheduler DO
+    participant Dashboard
+
+    Dashboard->>LCT: WebSocket connect
+    User->>Hono: GET /:id
+    Hono->>KV: Lookup link by id
+    alt KV hit
+        KV-->>Hono: link info (cached)
+    else KV miss
+        Hono->>D1: Query link by id
+        D1-->>Hono: link info
+        Hono->>KV: Write to cache (TTL 24h)
+    end
+    Hono-->>User: 302 Redirect (after geo-routing)
+    Note over Hono,LCT: waitUntil (background)
+    Hono->>Queue: Enqueue LINK_CLICK event
+    Hono->>LCT: addClick(lat, lng, country)
+    Queue->>D1: Persist click
+    Queue->>ES: Trigger Puppeteer+AI eval
+    LCT-->>Dashboard: WS push (2s alarm)
+```
+
 ## Getting Started
 
 **Prerequisites:** Node.js 18+, pnpm, a Cloudflare account with D1 / KV / Workers AI enabled.
