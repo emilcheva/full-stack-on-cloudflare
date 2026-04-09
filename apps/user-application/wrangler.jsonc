@@ -21,4 +21,11 @@
       "remote": true,
     },
   ],
+  "services": [
+    {
+      "binding": "BACKEND_SERVICE",
+      "service": "data-service",
+      "remote": true,
+    },
+  ],
 }
