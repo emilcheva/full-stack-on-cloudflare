@@ -19,7 +19,7 @@ A full-stack link management and analytics platform built entirely on Cloudflare
 
 **Backend (Cloudflare Workers)**
 
-- Hono.js, tRPC server adapter
+- Hono.js, tRPC
 - Drizzle ORM + Cloudflare D1 (SQLite)
 - Cloudflare KV, R2, Queues, Durable Objects, Workflows
 - Cloudflare Puppeteer + Workers AI
@@ -105,21 +105,4 @@ pnpm run migrate
 
 # (Optional) Open Drizzle Studio to inspect data
 pnpm run studio
-```
-
-Set the following environment variables for `packages/data-ops`:
-
-```
-CLOUDFLARE_ACCOUNT_ID=
-CLOUDFLARE_DATABASE_ID=
-CLOUDFLARE_D1_TOKEN=
-```
-
-Both `apps/user-application` and `apps/data-service` use a `.env` file for local secrets and `.env.production` for production.
-
-## Deployment
-
-```bash
-# Deploy the full frontend + Worker to prod
-pnpm run prod:deploy-frontend
 ```
