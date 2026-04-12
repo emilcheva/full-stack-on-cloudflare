@@ -19,7 +19,7 @@ A full-stack link management and analytics platform built entirely on Cloudflare
 
 **Backend (Cloudflare Workers)**
 
-- Hono.js, tRPC server adapter
+- Hono.js, tRPC
 - Drizzle ORM + Cloudflare D1 (SQLite)
 - Cloudflare KV, R2, Queues, Durable Objects, Workflows
 - Cloudflare Puppeteer + Workers AI
